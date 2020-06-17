@@ -1,0 +1,34 @@
+<section class="my-4">
+  <div class="container">
+    <h2>Listagem de empresas</h2>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">CNPJ</th>
+          <th scope="col">Data Fundação</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of empresas">
+          <th scope="row">{{ emp.id }}</th>
+          <td>
+            {{ emp.nome }}
+          </td>
+          <td>{{ emp.cnpj }}</td>
+          <td>{{ emp.dataFundacao }}</td>
+          <td>
+            <button class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
