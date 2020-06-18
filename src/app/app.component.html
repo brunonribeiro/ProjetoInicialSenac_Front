@@ -3,9 +3,10 @@
   <span style="margin-left: 20px;">{{title}}</span>
 </div>
 
+
 <div class="content" role="main">
   <app-empresas-cadastro></app-empresas-cadastro>
-  <app-empresas-listagem></app-empresas-listagem>
+  <app-empresas-listagem (onEditClick)="editClick($event)"></app-empresas-listagem>
 </div>
   
 

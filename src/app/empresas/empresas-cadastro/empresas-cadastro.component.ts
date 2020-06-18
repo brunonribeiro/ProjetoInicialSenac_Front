@@ -1,5 +1,5 @@
 import { EmpresaService } from '../empresa.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormGroup } from '@angular/forms';
 
 @Component({
@@ -22,7 +22,6 @@ export class EmpresasCadastroComponent implements OnInit {
       this.empresa.dataFundacao = this.dateToString(this.empresa.dataFundacao);
 
       this.empresaService.criar(this.empresa).subscribe((resposta) => {
-        frm.reset();
         location.reload();
       });
     } else {
@@ -30,11 +29,26 @@ export class EmpresasCadastroComponent implements OnInit {
     }
   }
 
-  verificaValidTouched(campo) {
+  carregarEmpresa({ ...obj }) {
+    obj.dataFundacao = this.toDate(obj.dataFundacao);
+    this.empresa = obj;
+  }
+
+  toDate(myStringDate: string) {
+    const dateParts = myStringDate.split('/');
+    const result = {
+      day: Number(dateParts[0]),
+      month: Number(dateParts[1]),
+      year: Number(dateParts[2]),
+    };
+    return result;
+  }
+
+  verificaValidTouched(campo: { valid: any; touched: any }) {
     return !campo.valid && campo.touched;
   }
 
-  aplicaCssErro(campo) {
+  aplicaCssErro(campo: { valid: any; touched: any }) {
     return {
       'has-error': this.verificaValidTouched(campo),
       'has-feedback': this.verificaValidTouched(campo),

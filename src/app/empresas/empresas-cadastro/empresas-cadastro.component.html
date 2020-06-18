@@ -33,13 +33,14 @@
             id="cnpj"
             name="cnpj"
             class="form-control"
-            [(ngModel)]="empresa.CNPJ"
+            mask="00.000.000/0000-00"
+            [(ngModel)]="empresa.cnpj"
             required
             #cnpj="ngModel"
           />
           <app-input-control-error
             [mostrarErro]="verificaValidTouched(cnpj)"
-            msgErro="CNPJ é obrigatório."
+            msgErro="CNPJ está inválido."
           >
           </app-input-control-error>
         </div>

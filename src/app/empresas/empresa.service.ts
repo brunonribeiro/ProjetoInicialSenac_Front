@@ -17,4 +17,9 @@ export class EmpresaService {
   criar(empresa: any){
     return this.http.post(this.empresasUrl, empresa);
   }
+
+  excluir(empresa: any){
+    console.log(empresa);
+    return this.http.delete(this.empresasUrl + '/' + empresa.id);
+  }
 }
