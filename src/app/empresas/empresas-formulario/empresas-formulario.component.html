@@ -5,44 +5,36 @@
 </section>
 <section>
   <div class="container">
-    <form method="post" #frm="ngForm" (ngSubmit)="criar(frm)" >
+    <form [formGroup]="registerForm" method="post" >
       <div class="form-row">
-        <div class="form-group col-md-6" [ngClass]="aplicaCssErro(nome)">
+        <div class="form-group col-md-6">
           <label for="nome">Nome</label>
-          <input
-            type="text"
+          <input 
+             type="text"
             id="nome"
-            name="nome"
             class="form-control"
+            formControlName="nome"
             [(ngModel)]="empresa.nome"
-            required
-            #nome="ngModel"
+            [ngClass]="{ 'is-invalid': verificaValidTouched('nome', '') }"
           />
-          <app-input-control-error
-            [mostrarErro]="verificaValidTouched(nome)"
-            msgErro="Nome é obrigatório."
-          >
-          </app-input-control-error>
+          <app-input-control-error [mostrarErro]="verificaValidTouched('nome', 'required')" msgErro="O Nome é obrigatório."></app-input-control-error>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-md-4" [ngClass]="aplicaCssErro(cnpj)">
+        <div class="form-group col-md-4">
           <label for="cnpj">CNPJ</label>
           <input
             type="text"
             id="cnpj"
-            name="cnpj"
             class="form-control"
             mask="00.000.000/0000-00"
             [(ngModel)]="empresa.cnpj"
-            required
-            #cnpj="ngModel"
+            formControlName="cnpj"
+            [ngClass]="{ 'is-invalid': verificaValidTouched('cnpj', '') }"           
           />
-          <app-input-control-error
-            [mostrarErro]="verificaValidTouched(cnpj)"
-            msgErro="CNPJ está inválido."
-          >
-          </app-input-control-error>
+          <app-input-control-error [mostrarErro]="verificaValidTouched('cnpj', 'required')" msgErro="CNPJ está obrigatório."></app-input-control-error>
+          <app-input-control-error [mostrarErro]="verificaValidTouched('cnpj', 'mask')" msgErro="CNPJ está inválido."></app-input-control-error>
+          <app-input-control-error [mostrarErro]="verificaValidTouched('cnpj', 'cnpjInvalido')" msgErro="CNPJ está inválido."></app-input-control-error>
         </div>
 
         <div class="form-group col-md-2">
@@ -50,8 +42,8 @@
           <div class="input-group">
             <input
               id="dataFundacao"
-              name="dataFundacao"
               class="form-control"
+              formControlName="dataFundacao"
               placeholder="dd/mm/yyyy"
               [(ngModel)]="empresa.dataFundacao"
               ngbDatepicker
@@ -69,7 +61,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary" (click)="criar()">
         Salvar
       </button>
     </form>

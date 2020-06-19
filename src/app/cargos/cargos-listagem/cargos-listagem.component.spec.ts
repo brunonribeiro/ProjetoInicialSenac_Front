@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { InputControlErrorComponent } from './input-control-error.component';
+import { CargosListagemComponent } from './cargos-listagem.component';
 
-describe('InputControlErrorComponent', () => {
-  let component: InputControlErrorComponent;
-  let fixture: ComponentFixture<InputControlErrorComponent>;
+describe('CargosListagemComponent', () => {
+  let component: CargosListagemComponent;
+  let fixture: ComponentFixture<CargosListagemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputControlErrorComponent ]
+      declarations: [ CargosListagemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InputControlErrorComponent);
+    fixture = TestBed.createComponent(CargosListagemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

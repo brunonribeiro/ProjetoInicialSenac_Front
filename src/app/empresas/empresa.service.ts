@@ -19,7 +19,6 @@ export class EmpresaService {
   }
 
   excluir(empresa: any){
-    console.log(empresa);
     return this.http.delete(this.empresasUrl + '/' + empresa.id);
   }
 }

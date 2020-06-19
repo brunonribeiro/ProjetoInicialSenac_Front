@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\e2e\\src",
+    "\\src\\app",
+    "\\src\\app\\empresas",
+    "\\src\\app\\empresas\\empresas-listagem"
   ],
+  "SelectedNode": "\\e2e",
   "PreviewInSolutionExplorer": false
 }

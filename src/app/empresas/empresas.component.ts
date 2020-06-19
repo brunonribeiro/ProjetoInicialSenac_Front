@@ -1,8 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpresasFormularioComponent } from './empresas-formulario/empresas-formulario.component';
 
 @Component({
@@ -10,15 +6,13 @@ import { EmpresasFormularioComponent } from './empresas-formulario/empresas-form
   templateUrl: './empresas.component.html',
 })
 export class EmpresasComponent implements OnInit {
-  empresa: any;
-  @ViewChild(EmpresasFormularioComponent)
-  empresaCadastro: EmpresasFormularioComponent;
+  @ViewChild(EmpresasFormularioComponent)  empresaForm: EmpresasFormularioComponent;
 
   constructor() {}
 
   ngOnInit() {  }
 
   editClick(empresa: { [x: string]: any; }) {
-    this.empresaCadastro.carregarEmpresa(empresa);
+    this.empresaForm.carregarEmpresa(empresa);
   }
 }
