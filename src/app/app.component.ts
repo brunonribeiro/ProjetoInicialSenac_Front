@@ -14,6 +14,7 @@ import { FormGroup } from '@angular/forms';
 export class AppComponent {
   title = 'EmpresasApp-DB1';
 
+  static dateToString = (date) => `${date.day}/${date.month}/${date.year}`;
   static formIsValid(registerForm: FormGroup) {
     Object.keys(registerForm.controls).forEach((field) => {
       const controle = registerForm.controls[field];
@@ -21,7 +22,11 @@ export class AppComponent {
     });
   }
 
-  static validAndTouched(registerForm: FormGroup, campo: string, validacao: string) {
+  static validAndTouched(
+    registerForm: FormGroup,
+    campo: string,
+    validacao: string
+  ) {
     let valid = false;
 
     if (validacao !== '') {
@@ -35,12 +40,21 @@ export class AppComponent {
 
   static saveDefault(registerForm: FormGroup, obj: any, saveService) {
     if (registerForm.valid) {
-
       saveService(obj).subscribe((resposta) => {
         location.reload();
       });
     } else {
-       this.formIsValid(registerForm);
+      this.formIsValid(registerForm);
     }
+  }
+
+  static toDate(myStringDate: string) {
+    const dateParts = myStringDate.split('/');
+    const result = {
+      day: Number(dateParts[0]),
+      month: Number(dateParts[1]),
+      year: Number(dateParts[2]),
+    };
+    return result;
   }
 }

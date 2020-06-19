@@ -17,7 +17,6 @@ export class EmpresasFormularioComponent implements OnInit {
 
   empresa: any;
   registerForm: FormGroup;
-  dateToString = (date) => `${date.day}/${date.month}/${date.year}`;
 
   ngOnInit() {
     this.empresa = {};
@@ -34,9 +33,9 @@ export class EmpresasFormularioComponent implements OnInit {
 
   criar() {
     if (this.registerForm.valid) {
-      this.empresa.dataFundacao = this.dateToString(this.empresa.dataFundacao);
+      this.empresa.dataFundacao = AppComponent.dateToString(this.empresa.dataFundacao);
 
-      this.empresaService.criar(this.empresa).subscribe((resposta) => {
+      this.empresaService.salvar(this.empresa).subscribe((resposta) => {
         location.reload();
       });
     } else {
@@ -45,18 +44,8 @@ export class EmpresasFormularioComponent implements OnInit {
   }
 
   carregarEmpresa({ ...obj }) {
-    obj.dataFundacao = this.toDate(obj.dataFundacao);
+    obj.dataFundacao = AppComponent.toDate(obj.dataFundacao);
     this.empresa = obj;
-  }
-
-  toDate(myStringDate: string) {
-    const dateParts = myStringDate.split('/');
-    const result = {
-      day: Number(dateParts[0]),
-      month: Number(dateParts[1]),
-      year: Number(dateParts[2]),
-    };
-    return result;
   }
 
   verificaValidTouched(campo: string, validacao: string) {

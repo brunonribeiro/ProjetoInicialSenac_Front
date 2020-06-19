@@ -1,0 +1,56 @@
+<section class="my-4">
+  <div class="container">
+    <h2>Listagem de funcionarios</h2>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Data Contratação</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fun of funcionarios">
+          <th scope="row">{{ fun.id }}</th>
+          <td>
+            {{ fun.nome }}
+          </td>
+          <td>{{ fun.cpf | mask: "000.000.000-00" }}</td>
+          <td>{{ fun.dataContratacao }}</td>
+          <td>
+            <button
+              class="btn btn-primary"
+              (click)="alterar(fun)"
+              style="margin-right: 10px;"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger" (click)="openModal(template, fun)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title">Excluir item</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Confirma a exclusão do registro?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" (click)="modalRef.hide()">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="excluirRegistro(funcionarioExcluir)">Excluir</button>
+      </div>
+  </ng-template>
+  </div>
+</section>

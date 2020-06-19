@@ -14,7 +14,7 @@ export class EmpresaService {
     return this.http.get<any[]>(this.empresasUrl);
   }
 
-  criar(empresa: any){
+  salvar(empresa: any){
     return this.http.post(this.empresasUrl, empresa);
   }
 

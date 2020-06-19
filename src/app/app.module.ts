@@ -17,6 +17,9 @@ import { CargoService } from './cargos/cargo.service';
 import { CargosComponent } from './cargos/cargos.component';
 import { CargosFormularioComponent } from './cargos/cargos-formulario/cargos-formulario.component';
 import { CargosListagemComponent } from './cargos/cargos-listagem/cargos-listagem.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component';
+import { FuncionariosListagemComponent } from './funcionarios/funcionarios-listagem/funcionarios-listagem.component';
+import { FuncionariosFormularioComponent } from './funcionarios/funcionarios-formulario/funcionarios-formulario.component';
 
 @NgModule({
    declarations: [
@@ -27,7 +30,10 @@ import { CargosListagemComponent } from './cargos/cargos-listagem/cargos-listage
       EmpresasFormularioComponent,
       CargosComponent,
       CargosFormularioComponent,
-      CargosListagemComponent
+      CargosListagemComponent,
+      FuncionariosComponent,
+      FuncionariosListagemComponent,
+      FuncionariosFormularioComponent
    ],
    imports: [
       BrowserModule,
