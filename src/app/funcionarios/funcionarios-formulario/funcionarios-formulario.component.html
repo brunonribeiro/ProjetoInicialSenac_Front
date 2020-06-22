@@ -30,6 +30,7 @@
             mask="000.000.000-00"
             [(ngModel)]="funcionario.cpf"
             formControlName="cpf"
+            (change)="verificaValidTouched('cpf', '')"
             [ngClass]="{ 'is-invalid': verificaValidTouched('cpf', '') }"           
           />
           <app-input-control-error [mostrarErro]="verificaValidTouched('cpf', 'required')" msgErro="CPF está obrigatório."></app-input-control-error>

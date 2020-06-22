@@ -4,21 +4,21 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 export class Validacoes {
   static ValidarCnpj(controle: AbstractControl) {
     // tslint:disable-next-line: prefer-const
-    let cnpjInvalido = { cnpjInvalido: true};
+    let cnpjInvalido = { cnpjInvalido: true };
     let cnpj = controle.value;
 
     if (cnpj === undefined) {
-        return null;
+      return null;
     }
 
     cnpj = cnpj.replace(/[^\d]+/g, '');
 
     if (cnpj === '') {
-        return null;
+      return null;
     }
 
     if (cnpj.length !== 14) {
-        return null;
+      return null;
     }
 
     // Elimina CNPJs invalidos conhecidos
@@ -34,7 +34,7 @@ export class Validacoes {
       cnpj === '88888888888888' ||
       cnpj === '99999999999999'
     ) {
-        return cnpjInvalido;
+      return cnpjInvalido;
     }
 
     // Valida DVs
@@ -72,13 +72,18 @@ export class Validacoes {
   }
 
   static ValidaCpf(controle: AbstractControl) {
+    // tslint:disable-next-line: prefer-const
+    let cpfInvalido = { cpfInvalido: true };
     const cpf = controle.value;
 
     let soma = 0;
     let resto: number;
-    let valido: boolean;
 
     const regex = new RegExp('[0-9]{11}');
+
+    if (cpf === '' || cpf === undefined) {
+      return null;
+    }
 
     if (
       cpf === '00000000000' ||
@@ -93,30 +98,34 @@ export class Validacoes {
       cpf === '99999999999' ||
       !regex.test(cpf)
     ) {
-      valido = false;
-    }
-    else {
-      for (let i = 1; i <= 9; i++) {
-        soma = soma + Number(cpf.substring(i - 1, i)) * (11 - i);
-      }
-      resto = (soma * 10) % 11;
-
-      if (resto === 10 || resto === 11) { resto = 0; }
-      if (resto !== Number(cpf.substring(9, 10))) { valido = false; }
-
-      soma = 0;
-      for (let i = 1; i <= 10; i++) {
-        soma = soma + Number(cpf.substring(i - 1, i)) * (12 - i);
-      }
-      resto = (soma * 10) % 11;
-
-      if (resto === 10 || resto === 11) { resto = 0; }
-      if (resto !== Number(cpf.substring(10, 11))) { valido = false; }
-      valido = true;
+      return cpfInvalido;
     }
 
-    if (valido) { return null; }
+    for (let i = 1; i <= 9; i++) {
+      soma = soma + Number(cpf.substring(i - 1, i)) * (11 - i);
+    }
+    resto = (soma * 10) % 11;
 
-    return { cpfInvalido: true };
+    if (resto === 10 || resto === 11) {
+      resto = 0;
+    }
+    if (resto !== Number(cpf.substring(9, 10))) {
+      return cpfInvalido;
+    }
+
+    soma = 0;
+    for (let i = 1; i <= 10; i++) {
+      soma = soma + Number(cpf.substring(i - 1, i)) * (12 - i);
+    }
+    resto = (soma * 10) % 11;
+
+    if (resto === 10 || resto === 11) {
+      resto = 0;
+    }
+    if (resto !== Number(cpf.substring(10, 11))) {
+      return cpfInvalido;
+    }
+
+    return null;
   }
 }

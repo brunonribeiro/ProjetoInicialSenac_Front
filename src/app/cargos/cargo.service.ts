@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CargoService {
+  
   cargosUrl = 'http://localhost:5000/api/cargos';
 
   constructor(private http: HttpClient) {}

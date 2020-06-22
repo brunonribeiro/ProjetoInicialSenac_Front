@@ -1,7 +1,7 @@
 import { FuncionarioService } from '../funcionario.service';
 import { Validacoes } from '../../validacoes';
 import { Component, OnInit } from '@angular/core';
-import {  FormGroup,  Validators,  FormBuilder} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -33,13 +33,17 @@ export class FuncionariosFormularioComponent implements OnInit {
 
   criar() {
     if (this.registerForm.valid) {
-      this.funcionario.dataContratacao = AppComponent.dateToString(this.funcionario.dataContratacao);
+      if (this.funcionario.dataContratacao !== undefined) {
+        this.funcionario.dataContratacao = AppComponent.dateToString(
+          this.funcionario.dataContratacao
+        );
+      }
 
       this.funcionarioService.salvar(this.funcionario).subscribe((resposta) => {
         location.reload();
       });
     } else {
-        AppComponent.formIsValid(this.registerForm);
+      AppComponent.formIsValid(this.registerForm);
     }
   }
 

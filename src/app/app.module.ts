@@ -20,11 +20,15 @@ import { CargosListagemComponent } from './cargos/cargos-listagem/cargos-listage
 import { FuncionariosComponent } from './funcionarios/funcionarios.component';
 import { FuncionariosListagemComponent } from './funcionarios/funcionarios-listagem/funcionarios-listagem.component';
 import { FuncionariosFormularioComponent } from './funcionarios/funcionarios-formulario/funcionarios-formulario.component';
+import { NavComponent } from './nav/nav.component';
+import { FuncionariosEmpresaComponent } from './funcionarios/funcionarios-empresa/funcionarios-empresa.component';
+import { FuncionariosCargoComponent } from './funcionarios/funcionarios-cargo/funcionarios-cargo.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       InputControlErrorComponent,
+      NavComponent,
       EmpresasListagemComponent,
       EmpresasComponent,
       EmpresasFormularioComponent,
@@ -33,7 +37,9 @@ import { FuncionariosFormularioComponent } from './funcionarios/funcionarios-for
       CargosListagemComponent,
       FuncionariosComponent,
       FuncionariosListagemComponent,
-      FuncionariosFormularioComponent
+      FuncionariosFormularioComponent,
+      FuncionariosEmpresaComponent,
+      FuncionariosCargoComponent
    ],
    imports: [
       BrowserModule,

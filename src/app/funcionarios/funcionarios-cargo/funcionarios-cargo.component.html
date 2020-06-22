@@ -1,0 +1,47 @@
+<section class="my-4">
+  <div class="container">
+    <h2>Vincular funcionário a um cargo</h2>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <form [formGroup]="registerForm" method="post">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Nome</label>
+          <input
+            type="text"
+            name="nome"
+            [(ngModel)]="funcionario.nome"
+            formControlName="nome"    
+            class="form-control"
+            disabled
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="cargoId">Cargo</label>
+
+          <select class="form-control" 
+                  name="cargoId"   
+                  formControlName="cargoId"
+                  [(ngModel)]="funcionario.cargoId"  
+                  [ngClass]="{ 'is-invalid': verificaValidTouched('cargoId', '') }">>
+            <option value="">--Selecione um Cargo--</option>
+            <option *ngFor="let car of cargos" value="{{ car.id }}">
+              {{ car.descricao }}
+            </option>
+          </select>
+          <app-input-control-error [mostrarErro]="verificaValidTouched('cargoId', 'required')" msgErro="O Cargo é obrigatório."></app-input-control-error>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary btn-space" (click)="vincular()">
+        Salvar
+      </button>
+      <button type="button" class="btn btn-danger" (click)="voltar()">
+        Cancelar
+      </button>
+    </form>
+  </div>
+</section>

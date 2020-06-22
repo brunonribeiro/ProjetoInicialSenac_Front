@@ -11,7 +11,8 @@
           <th scope="col">Id</th>
           <th scope="col">Nome</th>
           <th scope="col">CPF</th>
-          <th scope="col">Data Contratação</th>
+          <th scope="col">Empresa</th>
+          <th scope="col">Cargo</th>
           <th></th>
         </tr>
       </thead>
@@ -22,16 +23,13 @@
             {{ fun.nome }}
           </td>
           <td>{{ fun.cpf | mask: "000.000.000-00" }}</td>
-          <td>{{ fun.dataContratacao }}</td>
+          <td>{{ fun.empresa }}</td>
+          <td>{{ fun.cargo }}</td>
           <td>
-            <button
-              class="btn btn-primary"
-              (click)="alterar(fun)"
-              style="margin-right: 10px;"
-            >
-              <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-danger" (click)="openModal(template, fun)"><i class="fas fa-trash"></i></button>
+            <button class="btn btn-primary btn-space" (click)="alterar(fun)"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-primary btn-space" (click)="abrirEmpresa(fun)">Empresa</button>
+            <button class="btn btn-primary btn-space" (click)="abrirCargo(fun)" [disabled]="fun.empresa == null">Cargo</button>
+            <button class="btn btn-danger"  (click)="openModal(template, fun)"><i class="fas fa-trash"></i></button>
           </td>
         </tr>
       </tbody>
