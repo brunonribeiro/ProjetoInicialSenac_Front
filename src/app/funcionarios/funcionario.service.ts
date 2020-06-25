@@ -4,23 +4,29 @@ import { Observable } from 'rxjs';
 import { Funcionario } from '../_models/Funcionario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FuncionarioService {
-
-funcionariosUrl = 'http://localhost:5000/api/funcionarios';
+  funcionariosUrl = 'http://localhost:5000/api/funcionarios';
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Funcionario[]>{
+  listar(): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(this.funcionariosUrl);
   }
 
-  salvar(funcionario: any) {
-    return this.http.post(this.funcionariosUrl, funcionario);
+  salvar(funcionario: any, success: any, fail: any) {
+    return this.http.post(this.funcionariosUrl, funcionario).subscribe(
+      (resposta) => {
+        success(resposta);
+      },
+      (ex) => {
+        fail(ex);
+      }
+    );
   }
 
-  excluir(funcionario: Funcionario){
+  excluir(funcionario: Funcionario) {
     return this.http.delete(this.funcionariosUrl + '/' + funcionario.id);
   }
 
@@ -28,18 +34,35 @@ funcionariosUrl = 'http://localhost:5000/api/funcionarios';
     return this.http.get<Funcionario>(`${this.funcionariosUrl}/${id}`);
   }
 
-  vincularEmpresa(funcionario: Funcionario): Observable<Funcionario> {
-    return this.http.put<Funcionario>(
-      `${this.funcionariosUrl}/${funcionario.id}/vincularempresa/${funcionario.empresaId}`,
-      funcionario
-    );
+  vincularEmpresa(funcionario: Funcionario, success: any, fail: any) {
+    this.http
+      .put<Funcionario>(
+        `${this.funcionariosUrl}/${funcionario.id}/vincularempresa/${funcionario.empresaId}`,
+        funcionario
+      )
+      .subscribe(
+        (resposta) => {
+          success(resposta);
+        },
+        (ex) => {
+          fail(ex);
+        }
+      );
   }
 
-  atribuirCargo(funcionario: Funcionario): Observable<Funcionario> {
-    return this.http.put<Funcionario>(
-      `${this.funcionariosUrl}/${funcionario.id}/atribuircargo/${funcionario.cargoId}`,
-      funcionario
-    );
+  atribuirCargo(funcionario: Funcionario, success: any, fail: any) {
+    this.http
+      .put<Funcionario>(
+        `${this.funcionariosUrl}/${funcionario.id}/atribuircargo/${funcionario.cargoId}`,
+        funcionario
+      )
+      .subscribe(
+        (resposta) => {
+          success(resposta);
+        },
+        (ex) => {
+          fail(ex);
+        }
+      );
   }
-
 }

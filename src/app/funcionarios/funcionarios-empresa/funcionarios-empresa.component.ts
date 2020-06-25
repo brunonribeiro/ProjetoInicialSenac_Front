@@ -41,23 +41,23 @@ export class FuncionariosEmpresaComponent implements OnInit {
   validation() {
     this.registerForm = this.fb.group({
       nome: [],
-      empresaId: ['', [Validators.required]]
+      empresaId: ['', [Validators.required]],
     });
   }
 
   vincular() {
     if (this.registerForm.valid) {
-      this.funcionarioService
-        .vincularEmpresa(this.funcionario)
-        .subscribe((result) => {
-          this.voltar();
-        });
+      this.funcionarioService.vincularEmpresa(
+        this.funcionario,
+        this.voltar,
+        AppComponent.erroAoSalvar
+      );
     } else {
       AppComponent.formIsValid(this.registerForm);
     }
   }
 
-  voltar(){
+  voltar() {
     location.href = '/funcionarios';
   }
 

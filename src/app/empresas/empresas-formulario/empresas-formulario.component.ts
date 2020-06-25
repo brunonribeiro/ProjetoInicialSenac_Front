@@ -1,7 +1,7 @@
 import { EmpresaService } from '../empresa.service';
 import { Validacoes } from '../../validacoes';
 import { Component, OnInit } from '@angular/core';
-import {  FormGroup,  Validators,  FormBuilder} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -33,18 +33,26 @@ export class EmpresasFormularioComponent implements OnInit {
 
   criar() {
     if (this.registerForm.valid) {
-      this.empresa.dataFundacao = AppComponent.dateToString(this.empresa.dataFundacao);
+      if (this.empresa.dataFundacao) {
+        this.empresa.dataFundacao = AppComponent.dateToString(
+          this.empresa.dataFundacao
+        );
+      }
 
-      this.empresaService.salvar(this.empresa).subscribe((resposta) => {
-        location.reload();
-      });
+      this.empresaService.salvar(
+        this.empresa,
+        AppComponent.salvoComSucesso,
+        AppComponent.erroAoSalvar
+      );
     } else {
-        AppComponent.formIsValid(this.registerForm);
+      AppComponent.formIsValid(this.registerForm);
     }
   }
 
   carregarEmpresa({ ...obj }) {
-    obj.dataFundacao = AppComponent.toDate(obj.dataFundacao);
+    if (obj.dataFundacao) {
+      obj.dataFundacao = AppComponent.toDate(obj.dataFundacao);
+    }
     this.empresa = obj;
   }
 

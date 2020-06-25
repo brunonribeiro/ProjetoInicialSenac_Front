@@ -25,30 +25,34 @@ export class FuncionariosFormularioComponent implements OnInit {
 
   validation() {
     this.registerForm = this.fb.group({
-      nome: ['', [Validators.required]],
-      cpf: ['', [Validators.required, Validacoes.ValidaCpf]],
+      nome: ['', { validators: Validators.required }],
+      cpf: ['', { validators: [Validators.required, Validacoes.ValidaCpf] }],
       dataContratacao: [],
     });
   }
 
   criar() {
     if (this.registerForm.valid) {
-      if (this.funcionario.dataContratacao !== undefined) {
+      if (this.funcionario.dataContratacao) {
         this.funcionario.dataContratacao = AppComponent.dateToString(
           this.funcionario.dataContratacao
         );
       }
 
-      this.funcionarioService.salvar(this.funcionario).subscribe((resposta) => {
-        location.reload();
-      });
+      this.funcionarioService.salvar(
+        this.funcionario,
+        AppComponent.salvoComSucesso,
+        AppComponent.erroAoSalvar
+      );
     } else {
       AppComponent.formIsValid(this.registerForm);
     }
   }
 
   carregarFuncionario({ ...obj }) {
-    obj.dataContratacao = AppComponent.toDate(obj.dataContratacao);
+    if (obj.dataContratacao) {
+      obj.dataContratacao = AppComponent.toDate(obj.dataContratacao);
+    }
     this.funcionario = obj;
   }
 

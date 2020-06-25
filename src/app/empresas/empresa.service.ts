@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmpresaService {
-
   empresasUrl = 'http://localhost:5000/api/empresas';
 
   constructor(private http: HttpClient) {}
@@ -14,11 +13,18 @@ export class EmpresaService {
     return this.http.get<any[]>(this.empresasUrl);
   }
 
-  salvar(empresa: any){
-    return this.http.post(this.empresasUrl, empresa);
+  salvar(empresa: any, success: any, fail: any) {
+    return this.http.post(this.empresasUrl, empresa).subscribe(
+      (resposta) => {
+        success(resposta);
+      },
+      (ex) => {
+        fail(ex);
+      }
+    );
   }
 
-  excluir(empresa: any){
+  excluir(empresa: any) {
     return this.http.delete(this.empresasUrl + '/' + empresa.id);
   }
 }

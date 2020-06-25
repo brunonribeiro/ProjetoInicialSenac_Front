@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateFRParserFormatter } from './ngb-date-fr-parser-formatter';
 import { FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -56,5 +57,13 @@ export class AppComponent {
       year: Number(dateParts[2]),
     };
     return result;
+  }
+
+  static salvoComSucesso() {
+    location.reload();
+  }
+
+  static erroAoSalvar(ex: HttpErrorResponse) {
+    alert(ex.error);
   }
 }
