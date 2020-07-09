@@ -1,20 +1,29 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FuncionariosCargoComponent } from './funcionarios-cargo.component';
+import { InputControlErrorComponent } from 'src/app/input-control-error/input-control-error.component';
+import { AppCommonTestModule } from 'src/app/common/common-test.module';
+import { ActivatedRoute } from '@angular/router';
 
 describe('FuncionariosCargoComponent', () => {
   let component: FuncionariosCargoComponent;
   let fixture: ComponentFixture<FuncionariosCargoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ FuncionariosCargoComponent ]
+      declarations: [ FuncionariosCargoComponent, InputControlErrorComponent ],
+      imports: [AppCommonTestModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { params: { id: 1 } }
+          },
+        }
+      ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FuncionariosCargoComponent);
@@ -22,7 +31,7 @@ describe('FuncionariosCargoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 });

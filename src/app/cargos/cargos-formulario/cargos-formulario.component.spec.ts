@@ -1,20 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CargosFormularioComponent } from './cargos-formulario.component';
+import { InputControlErrorComponent } from './../../input-control-error/input-control-error.component';
+
+import { AppCommonTestModule } from './../../common/common-test.module';
+import { CargoService } from '../cargo.service';
 
 describe('CargosFormularioComponent', () => {
   let component: CargosFormularioComponent;
   let fixture: ComponentFixture<CargosFormularioComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ CargosFormularioComponent ]
+      declarations: [ CargosFormularioComponent, InputControlErrorComponent ],
+      imports: [AppCommonTestModule],
+      providers: [CargoService]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CargosFormularioComponent);
@@ -22,7 +25,7 @@ describe('CargosFormularioComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 });

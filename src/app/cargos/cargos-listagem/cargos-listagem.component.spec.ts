@@ -1,20 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CargosListagemComponent } from './cargos-listagem.component';
+
+import { AppCommonTestModule } from 'src/app/common/common-test.module';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CargoService } from '../cargo.service';
 
 describe('CargosListagemComponent', () => {
   let component: CargosListagemComponent;
   let fixture: ComponentFixture<CargosListagemComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ CargosListagemComponent ]
+      declarations: [ CargosListagemComponent ],
+      imports: [ AppCommonTestModule, ModalModule.forRoot()],
+      providers: [CargoService]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CargosListagemComponent);
@@ -22,7 +25,7 @@ describe('CargosListagemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 });

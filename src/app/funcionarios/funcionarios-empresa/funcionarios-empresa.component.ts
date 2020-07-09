@@ -27,9 +27,7 @@ export class FuncionariosEmpresaComponent implements OnInit {
 
   ngOnInit() {
     this.funcionario = {} as Funcionario;
-    this.routeSub = this.route.params.subscribe((params) => {
-      this.loadFuncionario(params.id);
-    });
+    this.loadFuncionario(this.route.snapshot.params.id);
 
     this.empresaService.listar().subscribe((dados) => {
       this.empresas = dados;

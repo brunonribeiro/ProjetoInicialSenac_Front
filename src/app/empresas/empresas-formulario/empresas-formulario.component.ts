@@ -33,6 +33,8 @@ export class EmpresasFormularioComponent implements OnInit {
 
   criar() {
     if (this.registerForm.valid) {
+      this.empresa = Object.assign({id: this.empresa.id}, this.registerForm.value);
+
       if (this.empresa.dataFundacao) {
         this.empresa.dataFundacao = AppComponent.dateToString(
           this.empresa.dataFundacao
@@ -54,6 +56,7 @@ export class EmpresasFormularioComponent implements OnInit {
       obj.dataFundacao = AppComponent.toDate(obj.dataFundacao);
     }
     this.empresa = obj;
+    this.registerForm.patchValue(obj);
   }
 
   verificaValidTouched(campo: string, validacao: string) {

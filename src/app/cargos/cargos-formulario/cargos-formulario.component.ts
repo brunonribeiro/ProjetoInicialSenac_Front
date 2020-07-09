@@ -2,7 +2,6 @@ import { AppComponent } from './../../app.component';
 import { CargoService } from './../cargo.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cargos-formulario',
@@ -28,6 +27,8 @@ export class CargosFormularioComponent implements OnInit {
 
   criar() {
     if (this.registerForm.valid) {
+      this.cargo = Object.assign({id: this.cargo.id}, this.registerForm.value);
+
       this.cargoService.salvar(
         this.cargo,
         AppComponent.salvoComSucesso,
@@ -40,6 +41,7 @@ export class CargosFormularioComponent implements OnInit {
 
   carregarCargo({ ...obj }) {
     this.cargo = obj;
+    this.registerForm.patchValue(obj);
   }
 
   verificaValidTouched(campo: string, validacao: string) {

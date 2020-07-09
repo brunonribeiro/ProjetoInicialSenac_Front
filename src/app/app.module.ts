@@ -1,3 +1,4 @@
+import { AppCommonModule } from './common/common.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -42,6 +43,7 @@ import { FuncionariosCargoComponent } from './funcionarios/funcionarios-cargo/fu
       FuncionariosCargoComponent
    ],
    imports: [
+      AppCommonModule,
       BrowserModule,
       HttpClientModule,
       AppRoutingModule,

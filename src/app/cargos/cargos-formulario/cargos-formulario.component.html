@@ -14,7 +14,6 @@
             id="descricao"
             class="form-control"
             formControlName="descricao"
-            [(ngModel)]="cargo.descricao"
             [ngClass]="{ 'is-invalid': verificaValidTouched('descricao', '') }"
           />
           <app-input-control-error [mostrarErro]="verificaValidTouched('descricao', 'required')" msgErro="A Descrição é obrigatória."></app-input-control-error>

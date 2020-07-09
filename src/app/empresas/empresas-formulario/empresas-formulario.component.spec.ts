@@ -1,20 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmpresasFormularioComponent } from './empresas-formulario.component';
+import { EmpresaService } from '../empresa.service';
+import { AppCommonTestModule } from 'src/app/common/common-test.module';
+import { InputControlErrorComponent } from 'src/app/input-control-error/input-control-error.component';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('EmpresasFormularioComponent', () => {
   let component: EmpresasFormularioComponent;
   let fixture: ComponentFixture<EmpresasFormularioComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmpresasFormularioComponent ]
+      declarations: [ EmpresasFormularioComponent, InputControlErrorComponent ],
+      imports: [AppCommonTestModule, NgbDatepickerModule],
+      providers: [EmpresaService]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmpresasFormularioComponent);
@@ -22,7 +25,7 @@ describe('EmpresasFormularioComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 });

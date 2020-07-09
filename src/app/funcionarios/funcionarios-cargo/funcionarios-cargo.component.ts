@@ -27,9 +27,7 @@ export class FuncionariosCargoComponent implements OnInit {
 
   ngOnInit() {
     this.funcionario = {} as Funcionario;
-    this.routeSub = this.route.params.subscribe((params) => {
-      this.loadFuncionario(params.id);
-    });
+    this.loadFuncionario(this.route.snapshot.params.id);
 
     this.cargoService.listar().subscribe((dados) => {
       this.cargos = dados;

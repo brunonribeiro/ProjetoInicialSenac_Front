@@ -1,20 +1,23 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FuncionariosListagemComponent } from './funcionarios-listagem.component';
+
+import { AppCommonTestModule } from 'src/app/common/common-test.module';
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FuncionarioService } from '../funcionario.service';
 
 describe('FuncionariosListagemComponent', () => {
   let component: FuncionariosListagemComponent;
   let fixture: ComponentFixture<FuncionariosListagemComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ FuncionariosListagemComponent ]
+      declarations: [ FuncionariosListagemComponent ],
+      imports: [ AppCommonTestModule, ModalModule.forRoot()],
+      providers: [FuncionarioService]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FuncionariosListagemComponent);
@@ -22,7 +25,7 @@ describe('FuncionariosListagemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 });
