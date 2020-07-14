@@ -1,13 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { CargoService } from './../cargo.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Cargo } from 'src/app/_models/Cargo';
 @Component({
   selector: 'app-cargos-listagem',
   templateUrl: './cargos-listagem.component.html',
   styleUrls: ['./cargos-listagem.component.css']
 })
 export class CargosListagemComponent implements OnInit {
-  cargos: Array<any>;
+  cargos: Array<Cargo>;
   cargoExcluir: any;
   modalRef: BsModalRef;
   // tslint:disable-next-line: no-output-on-prefix
@@ -27,17 +28,17 @@ export class CargosListagemComponent implements OnInit {
     this.cargoService.listar().subscribe(dados => this.cargos = dados);
   }
 
-  alterar(cargo: any){
+  alterar(cargo: Cargo){
     this.onEditClick.emit(cargo);
   }
 
-  openModal(template: TemplateRef<any>, cargo: any){
+  openModal(template: TemplateRef<any>, cargo: Cargo){
       this.modalRef = this.modalService.show(template);
       this.cargoExcluir = cargo;
   }
 
-  excluirRegistro(cargo: any){
-    this.cargoService.excluir(cargo).subscribe((resposta) => {
+  excluirRegistro(cargo: Cargo){
+    this.cargoService.excluir(cargo).subscribe(() => {
       location.reload();
     });
   }

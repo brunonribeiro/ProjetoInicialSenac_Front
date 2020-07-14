@@ -1,3 +1,4 @@
+import { Empresa } from 'src/app/_models/Empresa';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,10 +11,10 @@ export class EmpresaService {
   constructor(private http: HttpClient) {}
 
   listar() {
-    return this.http.get<any[]>(this.empresasUrl);
+    return this.http.get<Empresa[]>(this.empresasUrl);
   }
 
-  salvar(empresa: any, success: any, fail: any) {
+  salvar(empresa: Empresa, success: any, fail: any) {
     return this.http.post(this.empresasUrl, empresa).subscribe(
       (resposta) => {
         success(resposta);
@@ -24,7 +25,7 @@ export class EmpresaService {
     );
   }
 
-  excluir(empresa: any) {
+  excluir(empresa: Empresa) {
     return this.http.delete(this.empresasUrl + '/' + empresa.id);
   }
 }

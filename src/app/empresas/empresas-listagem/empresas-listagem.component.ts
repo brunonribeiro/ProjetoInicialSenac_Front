@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { EmpresaService } from '../empresa.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Empresa } from 'src/app/_models/Empresa';
 
 @Component({
   selector: 'app-empresas-listagem',
@@ -28,16 +29,16 @@ export class EmpresasListagemComponent implements OnInit {
     this.empresaService.listar().subscribe(dados => this.empresas = dados);
   }
 
-  alterar(empresa: any){
+  alterar(empresa: Empresa){
     this.onEditClick.emit(empresa);
   }
 
-  openModal(template: TemplateRef<any>, empresa: any){
+  openModal(template: TemplateRef<any>, empresa: Empresa){
       this.modalRef = this.modalService.show(template);
       this.empresaExcluir = empresa;
   }
 
-  excluirRegistro(empresa: any){
+  excluirRegistro(empresa: Empresa){
     this.empresaService.excluir(empresa).subscribe((resposta) => {
       location.reload();
     });

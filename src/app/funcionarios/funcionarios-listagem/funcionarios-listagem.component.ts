@@ -14,8 +14,8 @@ import { Funcionario } from 'src/app/_models/Funcionario';
   styleUrls: ['./funcionarios-listagem.component.css'],
 })
 export class FuncionariosListagemComponent implements OnInit {
-  funcionarios: Array<any>;
-  funcionarioExcluir: any;
+  funcionarios: Array<Funcionario>;
+  funcionarioExcluir: Funcionario;
   modalRef: BsModalRef;
   // tslint:disable-next-line: no-output-on-prefix
   @Output() onEditClick = new EventEmitter<any>();

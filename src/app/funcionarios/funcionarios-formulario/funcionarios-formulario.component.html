@@ -14,7 +14,6 @@
             id="nome"
             class="form-control"
             formControlName="nome"
-            [(ngModel)]="funcionario.nome"
             [ngClass]="{ 'is-invalid': verificaValidTouched('nome', '') }"
           />
           <app-input-control-error [mostrarErro]="verificaValidTouched('nome', 'required')" msgErro="O Nome é obrigatório."></app-input-control-error>
@@ -28,7 +27,6 @@
             id="cpf"
             class="form-control"
             mask="000.000.000-00"
-            [(ngModel)]="funcionario.cpf"
             formControlName="cpf"
             (change)="verificaValidTouched('cpf', '')"
             [ngClass]="{ 'is-invalid': verificaValidTouched('cpf', '') }"           
@@ -45,7 +43,6 @@
               class="form-control"
               formControlName="dataContratacao"
               placeholder="dd/mm/yyyy"
-              [(ngModel)]="funcionario.dataContratacao"
               ngbDatepicker
               #d="ngbDatepicker"
             />

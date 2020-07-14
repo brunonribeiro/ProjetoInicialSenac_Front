@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Cargo } from '../_models/Cargo';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,10 @@ export class CargoService {
   constructor(private http: HttpClient) {}
 
   listar() {
-    return this.http.get<any[]>(this.cargosUrl);
+    return this.http.get<Cargo[]>(this.cargosUrl);
   }
 
-  salvar(cargo: any, success: any, fail: any) {
+  salvar(cargo: Cargo, success: any, fail: any) {
     this.http.post(this.cargosUrl, cargo).subscribe(
       (resposta) => {
         success(resposta);
@@ -25,7 +25,7 @@ export class CargoService {
     );
   }
 
-  excluir(cargo: any) {
+  excluir(cargo: Cargo) {
     return this.http.delete(this.cargosUrl + '/' + cargo.id);
   }
 }

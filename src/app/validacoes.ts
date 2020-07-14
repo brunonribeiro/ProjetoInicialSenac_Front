@@ -74,7 +74,7 @@ export class Validacoes {
   static ValidaCpf(controle: AbstractControl) {
     // tslint:disable-next-line: prefer-const
     let cpfInvalido = { cpfInvalido: true };
-    const cpf = controle.value;
+    let cpf = controle.value;
 
     let soma = 0;
     let resto: number;
@@ -84,6 +84,8 @@ export class Validacoes {
     if (cpf === '' || cpf === undefined) {
       return null;
     }
+
+    cpf = cpf.replace(/[^\d]+/g, '');
 
     if (
       cpf === '00000000000' ||

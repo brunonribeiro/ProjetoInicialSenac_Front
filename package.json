@@ -30,6 +30,8 @@
     "ngx-bootstrap": "^5.6.1",
     "ngx-mask": "^9.1.2",
     "rxjs": "~6.5.4",
+    "rxjs-compat": "^6.6.0",
+    "rxjs-observable": "0.0.7",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
